@@ -2,7 +2,13 @@
 
 ## Quick Start
 
-- `git clone {{repoName}}`
+Install the following:
+
+- [.NET Core 2.1 SDK or later](https://www.microsoft.com/net/download/all)
+
+Then open a terminal and run:
+
+- `git clone https://github.com/mjgartendev/exploring-dotnet21.git`
 - `cd TodoApi`
 - `dotnet run`
 
