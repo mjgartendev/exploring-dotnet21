@@ -27,8 +27,8 @@ dotnet dev-certs https --help
 
 > For now, start with dotnet CLI docs then Todo Instructions
 
-- [.NET Core Overview]("docs/dotnetCoreOverview.md")
+- [.NET Core Overview](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCoreOverview.md)
 - [Using the dotnet CLI](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCli.md)
-- [Upgrading to .NET Core 2.1]("docs/dotnetCore2.1.md")
-- [Adding Identity]("docs/IdentityInstructions.md")
-- [Adding the Todos Feature]('docs/TodoInstructions.md')
+- [Upgrading to .NET Core 2.1](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCore2.1.md)
+- [Adding Identity](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/IdentityInstructions.md)
+- [Adding the Todos Feature](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/TodoInstructions.md)
