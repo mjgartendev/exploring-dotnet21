@@ -1,0 +1,1 @@
+// Implements the IEmailSender interface but doesn't actually connect to any external services

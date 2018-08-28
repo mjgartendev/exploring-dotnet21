@@ -5,10 +5,37 @@
     <meta charset="UTF-8">
     <title>To-do CRUD</title>
     <style>
+        body {
+            background: #333;
+            padding: 1% 15%;
+        }
+
         input[type='submit'],
         button,
         [aria-label] {
             cursor: pointer;
+        }
+
+        .todo-container {
+            background: #f1f1f1;
+            margin: 0 auto;
+            padding: .5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        #counter {
+            margin: auto;
+            margin-bottom: 10px;
+            padding: 3%;
+            height: 40px;
+            width: 40px;
+            background: rgb(34, 230, 148);
+            color: #333;
+            font-weight: 900;
+            font-size: larger;
+            border: 1px solid #fff;
+            border-radius: 15%;
         }
 
         #spoiler {
@@ -16,53 +43,84 @@
         }
 
         table {
-            font-family: Arial, sans-serif;
-            border: 1px solid;
+            font-family: Roboto, Ubuntu;
             border-collapse: collapse;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 1px 1px #f1f1f1;
+            padding: 2%;
+            margin: 2% auto;
+            background-color: #fff;
         }
 
         th {
-            background-color: rgb(34, 230, 148);
-            color: white;
+            background-color: #333;
+            color: rgb(34, 230, 148);
+            margin: 0;
+            padding: 1rem;
         }
 
         td {
-            border: 1px solid #f1f1f1;
+            border: none;
             padding: 10px;
+        }
+
+        .crud-header-left,
+        .crud-header-right {
+            text-align: center;
+        }
+
+        .crud-header-left {
+            float: left;
+        }
+
+        .crud-header-right {
+            float: right;
+        }
+
+        .crud-header {
+            margin-bottom: 5rem;
+            border-bottom: 2px solid #ccc;
+            padding: 2% 5%;
+        }
+
+        .crud-container {
+            clear: both;
+            padding: 2%;
         }
     </style>
 </head>
 
 <body>
-    <h1>To-do CRUD</h1>
-    <h3>Add</h3>
-    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-        <input type="text" id="add-name" placeholder="New to-do">
-        <input type="submit" value="Add">
-    </form>
-
-    <div id="spoiler">
-        <h3>Edit</h3>
-        <form class="my-form">
-            <input type="hidden" id="edit-id">
-            <input type="checkbox" id="edit-isComplete">
-            <input type="text" id="edit-name">
-            <input type="submit" value="Edit">
-            <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+    <div class="todo-container">
+        <h1>To-do CRUD</h1>
+        <h2 id="counter"></h2>
+        <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+            <input type="text" id="add-name" placeholder="New to-do">
+            <input type="submit" value="Add">
         </form>
+
+        <div id="spoiler">
+            <h3>Edit</h3>
+            <form class="my-form">
+                <input type="hidden" id="edit-id">
+                <input type="checkbox" id="edit-isComplete">
+                <input type="text" id="edit-name">
+                <input type="submit" value="Edit">
+                <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+            </form>
+        </div>
+        <div class="crud-container">
+            <table>
+                <thead>
+                    <th>Is Complete</th>
+                    <th>Name</th>
+                    <th></th>
+                    <th></th>
+                </thead>
+                <tbody id="todos"></tbody>
+            </table>
+        </div>
     </div>
-
-    <p id="counter"></p>
-
-    <table>
-        <tr>
-            <th>Is Complete</th>
-            <th>Name</th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tbody id="todos"></tbody>
-    </table>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>

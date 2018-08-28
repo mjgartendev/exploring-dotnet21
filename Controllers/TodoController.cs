@@ -18,9 +18,9 @@ namespace TodoApi.Controllers
         {
             _context = context;
 
-            if (_context.TodoItems.Count() == 0)
+            if (_context.Todos.Count() == 0)
             {
-                _context.TodoItems.AddRange(
+                _context.Todos.AddRange(
                     new TodoItem { Name = "Install SDK/CLI Tools" },
                     new TodoItem { Name = "Install Runtime" },
                     new TodoItem { Name = "Install VS Code (important because open-source, cross platform development)" },
@@ -35,7 +35,7 @@ namespace TodoApi.Controllers
         [HttpGet]
         public ActionResult<List<TodoItem>> GetAll()
         {
-            return _context.TodoItems.ToList();
+            return _context.Todos.ToList();
         }
         #endregion snippet_GetAll
 
@@ -43,7 +43,7 @@ namespace TodoApi.Controllers
         [HttpGet("{id}", Name = "GetTodo")]
         public ActionResult<TodoItem> GetById(long id)
         {
-            var item = _context.TodoItems.Find(id);
+            var item = _context.Todos.Find(id);
 
             if (item == null)
             {
@@ -81,7 +81,7 @@ namespace TodoApi.Controllers
         [HttpPost]
         public ActionResult<TodoItem> Create([FromBody]TodoItem item)
         {
-            _context.TodoItems.Add(item);
+            _context.Todos.Add(item);
             _context.SaveChanges();
 
             return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
@@ -98,7 +98,7 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
 
-            var todo = _context.TodoItems.Find(id);
+            var todo = _context.Todos.Find(id);
             if (todo == null)
             {
                 return NotFound();
@@ -107,7 +107,7 @@ namespace TodoApi.Controllers
             todo.IsComplete = item.IsComplete;
             todo.Name = item.Name;
 
-            _context.TodoItems.Update(todo);
+            _context.Todos.Update(todo);
             _context.SaveChanges();
 
             return NoContent();
@@ -122,13 +122,13 @@ namespace TodoApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var todo = _context.TodoItems.Find(id);
+            var todo = _context.Todos.Find(id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            _context.TodoItems.Remove(todo);
+            _context.Todos.Remove(todo);
             _context.SaveChanges();
             return NoContent();
         }

@@ -30,63 +30,24 @@ namespace TodoApi
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-
-        // Register a Database Provider
-            // InMemory: Simplest DbContext, doesn't require an installed database
-                // services.AddDbContext<TodoContext>(opt =>
-                //         opt.UseInMemoryDatabase("TodoApi"));
-
-            // SqlLite: Simple persistent DB for development and personal projects
-                // services.AddDbContext<MyDatabaseContext>(options =>
-                //         options.UseSqlite("Data Source=TodoApi.db"));
-
-            // SqlServer: Use this for SQL Server Express - LocalDb
-                // Set DbName in appSettings.json
-                services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-        
-        // Setup Identity Provider
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
-        // Configure Identity
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Password settings
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 8;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireLowercase = false;
-                options.Password.RequiredUniqueChars = 6;
-
-                // Lockout settings
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-                options.Lockout.MaxFailedAccessAttempts = 10;
-                options.Lockout.AllowedForNewUsers = true;
-
-                // User settings
-                options.User.RequireUniqueEmail = true;
-            });
-
-            services.ConfigureApplicationCookie(options =>
-            {
-                // Cookie settings
-                options.Cookie.HttpOnly = true;
-                options.Cookie.Expiration = TimeSpan.FromDays(150);
-                // If the LoginPath isn't set, ASP.NET Core defaults 
-                // the path to /Account/Login.
-                options.LoginPath = "/Account/Login";
-                // If the AccessDeniedPath isn't set, ASP.NET Core defaults 
-                // the path to /Account/AccessDenied.
-                options.AccessDeniedPath = "/Account/AccessDenied";
-                options.SlidingExpiration = true;
-            });
-
+        {                    
+        // Register the DbContext to use a database service          
+            // Use Azure Connection if Production env
+            // otherwise use LocalDb connection for development
+                // Note: This can be done much more elegantly using appSettings.{environment}.json files, 
+                // but this example is easier to see what's happening
+            if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+                services.AddDbContext<TodoContext>(options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("AzureSqlConnection")));
+            else
+                services.AddDbContext<TodoContext>(options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("LocalDbConnection")));
+            
+            // services.AddDefaultIdentity<IdentityUser>()
+            //                 .AddEntityFrameworkStores<TodoContext>();
+                        
             // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+            //services.AddTransient<IEmailSender, EmailSender>();
 
             // SetCompatabilityVersion required to use ApiController + ControllerBase
             services.AddMvc()
@@ -103,11 +64,11 @@ namespace TodoApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                app.UseDatabaseErrorPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 // HTTP Strict Transfer Security
                 app.UseHsts();
             }
@@ -120,9 +81,20 @@ namespace TodoApi
             });
 
             app.UseHttpsRedirection();
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvc();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Todo", action = "Get" });
+            });
 
         }
     }
