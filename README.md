@@ -71,11 +71,20 @@ dotnet dev-certs https --help
 
 > For now, start with "Using the dotnet CLI" then "Adding the Todo Feature"
 
+### Overview Docs
+
 - [.NET Core Overview](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCoreOverview.md)
 - [`dotnet new webapi` Template Overview](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnet-new-webapi.md)
 - [Version 2.1 New Features](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCore2.1.md)
+
+### Get Familiar With New Tools
+
 - [Using the dotnet CLI](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCli.md)
 - [Using EF Core CLI Tools](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/efCore.md)
+- [dotnet codegenerator (aka EF Scaffolding)](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/aspnet-codegenerator.md)
+
+### Getting Started Tutorials
+
 - [Adding the Todos Feature](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/TodoInstructions.md)
 - [Adding Identity & Authorization](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/IdentityInstructions.md)
 - [Configure Env & AppSettings.json](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/EnvAppSettingsConfig.md)

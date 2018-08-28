@@ -11,29 +11,88 @@ This doc will walk through:
 
 `/Models/TodoItem.cs`
 
+```cs
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace TodoApi.Models
+{
+    public class TodoItem
+    {
+        //props
+        [Key]
+        public long Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime DueDate { get; set; }
+        [DefaultValue(false)]
+        public bool IsComplete { get; set; }
+        public int UserId { get; set; }
+        public List<Task> TaskList { get; set; }
+    }
+}
+```
+
 ## Add Database Context
 
 `/Models/TodoContext.cs`
 
+```cs
+using Microsoft.EntityFrameworkCore;
+
+namespace TodoApi.Models
+{
+    public class TodoContext : DbContext
+    {
+        public TodoContext(DbContextOptions<TodoContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<TodoItem> TodoItems { get; set; }
+    }
+}
+```
+
 ## Register Database Context
 
-`Startup.cs/ConfigureServices()`
+Services (such as TodoContext) are registered with dependency injection during application startup. Components that require these services (such as your MVC/API controllers) are then provided these services via constructor parameters or properties.
+
+In `Startup.cs/ConfigureServices()`:
 
 ```cs
 // Basic in memory db
 services.AddDbContext<TodoContext>(opt =>
-                opt.UseInMemoryDatabase("TodoList"));
+                opt.UseInMemoryDatabase("TodoApi"));
 
-// LocalDb (SQLServerExpress connection string set in appSettings)
+// SqlLite (simple, persistent development database)
+services.AddDbContext<TodoContext>(opt =>
+                opt.UseSqlite("Data Source=TodoApi.db"));
 
-// SqlServer (SQLServerExpress connection string set in appSettings)
+// LocalDb (Specify Db name in appSettings)
+services.AddDbContext<TodoContext>(opt =>
+                opt.UseSqlServer("DefaultConnection"));
+
+// SqlServer (Specify Host/Username/Password + Db name in appSettings)
+services.AddDbContext<TodoContext>(opt =>
+                opt.UseSqlServer("SqlServerConnectionString"));
 
 // MongoDb (SQLServerExpress connection string set in appSettings)
+    // TODO
 ```
 
-## Create Migrations
+## Create and Apply Migrations
 
-## Apply Migrations
+Once you have a model, you use migrations to create a database.
+
+### Create the Initial Migration
+
+Run `dotnet ef migrations add InitialCreate` to scaffold a migration and create the initial set of tables for the model.
+
+### Apply the Migration to your registered database
+
+Run `dotnet ef database update` to apply the new migration to the database. This command creates the database before applying migrations.
 
 ## Configure Swagger
 
