@@ -1,31 +1,45 @@
 # netcoreapp2.1 TodoApi Example
 
-This repository includes a working sample application along with docs for creating a basic Web API using ASP.NET Core 2.1. 
+This repository includes a working sample application along with docs for creating a basic Web API using ASP.NET Core 2.1.
 
-_Features/Examples_
+## Features/Examples
 
-[x] ApiController annotation enhancements
-[x] ControllerBase implementation
-[x] Swagger Docs Integration
-[x] Heavily Commented Default API Controller (ValuesController)
-[x] Custom API Controller
-[] User Authorization with Identity Framework
-[] User Authorization with Auth0
+### dotnet core
 
-_Frontend_
-[x] jQuery/Ajax Frontend
-[] Vuejs ClientApp
-[] React ClientApp
-[] Angular ClientApp
-[] Typescript ClientApp
-[] Blazor ClientApp
+- [x] Heavily Commented ValuesController (default webapi controller)
+- [x] TodoApi Controller
+- [x] Swagger Docs Integration
+- [x] (new in v2.1) ApiController annotation implementation
+- [x] (new in v2.1) ControllerBase implementation
+- [ ] Sql Database Integration (SqlServer/Azure SQL DB)
+- [ ] Auth & Identity Configuration
+- [ ] Logging & Monitoring Examples
+- [ ] Testing & CI/CD Configuration Examples
 
-_Hosting_
-[] Docker
-[] Azure WebApp
-[] GCP AppEngine
-[] AWS Lightsail
-[] Heroku Buildback
+### Auth & Identity
+
+- [ ] User Auth with Identity Framework
+- [ ] User Auth with Auth0
+- [ ] User Auth with Okta
+
+### Frontend
+
+- [ ] ASP.NET MVC Views
+- [ ] Razor Pages
+- [x] Simple jQuery/Ajax Frontend
+- [ ] Typescript ClientApp
+- [ ] Vuejs ClientApp
+- [ ] React ClientApp
+- [ ] Angular ClientApp
+- [ ] Blazor ClientApp
+
+### Hosting
+
+- [ ] Docker
+- [ ] Azure WebApp
+- [ ] GCP AppEngine
+- [ ] AWS Lightsail
+- [ ] Heroku Buildback
 
 ## Quick Start
 
@@ -53,15 +67,16 @@ Open browser to
 dotnet dev-certs https --help
 ```
 
-## Check out the guides for more detailed instructions
+## Docs & Tutorials
 
 > For now, start with "Using the dotnet CLI" then "Adding the Todo Feature"
 
 - [.NET Core Overview](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCoreOverview.md)
-- [Using the *dotnet new webapi* Template](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnet-new-webapi.md)
+- [`dotnet new webapi` Template Overview](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnet-new-webapi.md)
+- [Version 2.1 New Features](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCore2.1.md)
 - [Using the dotnet CLI](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCli.md)
 - [Using EF Core CLI Tools](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/efCore.md)
 - [Adding the Todos Feature](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/TodoInstructions.md)
 - [Adding Identity & Authorization](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/IdentityInstructions.md)
 - [Configure Env & AppSettings.json](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/EnvAppSettingsConfig.md)
-- [Upgrading to .NET Core 2.1](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCore2.1.md)
+- [Deploying WebApp + Database](https://github.com/mjgartendev/exploring-dotnet21/blob/master/docs/dotnetCoreDeploymentWalkthrough.md)

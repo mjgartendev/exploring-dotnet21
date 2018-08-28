@@ -17,14 +17,17 @@ dotnet new webapi -o TodoApi
 cd TodoApi
 ```
 
-> run `dotnet new` to see a list of available templates
+> TIP: run `dotnet new` to see a list of available templates
 
 ## Run the project
 
-Project should restore dependencies automatically. May need to restore manually if not.
+Project should restore dependencies automatically, but if not you will need to restore them manually.
 
 ```sh
+# if packages weren't automatically restored
 dotnet restore
+
+# launch app - will call the web host builder with current env startup config
 dotnet run
 ```
 

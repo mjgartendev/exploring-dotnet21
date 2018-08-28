@@ -24,7 +24,8 @@ namespace TodoApi.Controllers
     {
         // GET api/values
         [HttpGet]
-        // ActionResult<T> wraps an expected type in an ActionResult (Automatic REST status codes: OK-200, NotFound-404, etc)
+        // ActionResult<T> wraps an expected strong type in an ActionResult
+        // ActionResults provide benefits like Automatic REST status codes: OK-200, NotFound-404, etc
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
@@ -39,18 +40,19 @@ namespace TodoApi.Controllers
 
         // POST api/values
         [HttpPost]
-        /** ApiController provides Binding source parameter inference
-            A binding source attribute defines the location at which an action parameter's value is found. The following binding source attributes exist:
+        /** ApiController annotation provides Binding source parameter inference
+            A binding source attribute defines the location at which an action parameter's value is found. 
+            
+            The following binding source attributes exist:
+                Attribute	Binding source
+                [FromBody]	Request body
+                [FromForm]	Form data in the request body
+                [FromHeader]	Request header
+                [FromQuery]	Request query string parameter
+                [FromRoute]	Route data from the current request
+                [FromServices]	The request service injected as an action parameter
 
-            Attribute	Binding source
-            [FromBody]	Request body
-            [FromForm]	Form data in the request body
-            [FromHeader]	Request header
-            [FromQuery]	Request query string parameter
-            [FromRoute]	Route data from the current request
-            [FromServices]	The request service injected as an action parameter
-
-            If the Binding Source attribute is not specified it will be inferred based on the provided payload
+            If the Binding Source attribute is not specified it will be inferred based on the provided object/payload
         **/
         public void Post([FromBody] string value)
         {

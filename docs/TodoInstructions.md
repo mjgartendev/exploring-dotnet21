@@ -1,5 +1,12 @@
 # Adding Todo Functionality
 
+This doc will walk through:
+
+- Creating a simple REST ApiController with full CRUD functionality
+- Associating interfaces/models/repositories with a dbContext
+- Configuring and Registering the dbContext with a Database service
+- Adding comments to improve default Swagger Docs
+
 ## Add Model
 
 `/Models/TodoItem.cs`
@@ -50,6 +57,6 @@ app.UseSwagger();
 // specifying the Swagger JSON endpoint.
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoApi V1");
 });
 ```
