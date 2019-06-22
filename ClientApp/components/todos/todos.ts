@@ -28,4 +28,9 @@ export default class TodoComponent extends Vue {
 
     this.todos.push(newTodo);
   }
+
+  public toggleTodo(todo: TodoItem) {
+    todo.isDone != todo.isDone;
+    console.log(todo)
+  }
 }

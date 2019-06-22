@@ -4,7 +4,7 @@
 
         <p>This component demonstrates fetching data from the server.</p>
         <input class="form-control" placeholder="Add some stuff to do!" value="New Todo" />
-        <button class="btn btn-primary" @click.prevent="createTodo(newTodo)">
+        <button class="btn btn-primary" @click.prevent="createTodo">
             <i class="fa fa-plus"></i> Todo</button>
         <table v-if="todos.length" class="table">
             <thead>
@@ -17,7 +17,11 @@
             <tbody>
                 <tr v-for="item in todos">
                     <td>{{ item.name }}</td>
-                    <td>{{ item.isDone }}</td>
+                    <td>
+                        <i v-if=(item.isDone) class="fa fa-check"></i>
+                        <i v-else class="fa fa-cross"></i>
+                        {{ item.isDone }}
+                    </td>
                     <td>
                         <button class="button" @click.prevent="editTodo" ;>
                             <i class="glyphicon glyphicon-edit"></i>Edit</button>

@@ -12,7 +12,7 @@ Install the following:
 
 From a console, run the following commands:
 
-```console
+```bash
 dotnet new webapi -o TodoApi
 cd TodoApi
 ```
@@ -23,7 +23,7 @@ cd TodoApi
 
 Project should restore dependencies automatically, but if not you will need to restore them manually.
 
-```sh
+```bash
 # if packages weren't automatically restored
 dotnet restore
 

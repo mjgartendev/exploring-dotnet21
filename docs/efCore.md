@@ -2,7 +2,7 @@
 
 ## dotnet Cli Commands
 
-```sh
+```bash
 # Usage
 dotnet ef [cmd]
 
@@ -24,7 +24,7 @@ Your ApplicationDbContext ineherits from a base DbContext class. This class conn
 
 #### Code Snippet: DbContext
 
-```sh
+```bash
 # Usage:
 dotnet ef dbcontext [opts] [cmd]
 
@@ -76,7 +76,7 @@ Commands to manage migrations. Use migrations to update a database with changes 
 
 #### Code Snippet: Migrations
 
-```sh
+```bash
 # Usage:
 dotnet ef migrations [opts] [cmd]
 
@@ -103,7 +103,7 @@ Commands to manage the database.
 
 #### Code Snippet: Database
 
-```sh
+```bash
 # Usage
 dotnet ef database [opts] [cmd]
 
@@ -153,7 +153,7 @@ Update the Database Tables with new Migration script
 
 ## EF Core: DB First
 
-```sh
+```bash
 dotnet ef dbcontext scaffold <CONNECTION> <PROVIDER>
 
 # CONNECTION = Connection String to existing database

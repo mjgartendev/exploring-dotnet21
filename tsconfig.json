@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "outDir": "./ClientApp/",
     "lib": [
       "dom",
       "es2015"
@@ -18,7 +19,7 @@
     "jsx": "preserve",
     "jsxFactory": "h"
   },
-  "compileOnSave": false,
+  "compileOnSave": true,
   "include": [
     "./**/*.ts"
   ],
